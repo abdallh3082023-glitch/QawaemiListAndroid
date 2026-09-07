@@ -30,7 +30,9 @@ jobs:
       - name: Extract Android project
         run: |
           mkdir -p project
-          unzip -q Qawaemi-List-Android-Native-TouchFirst.zip -d project
+          ZIP_FILE=$(find . -maxdepth 2 -type f -iname "*.zip" | head -1)
+          echo "Using ZIP: $ZIP_FILE"
+          unzip -q "$ZIP_FILE" -d project
           find project -maxdepth 3 -type f | head -50
 
       - name: Install Gradle
